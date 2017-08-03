@@ -12,24 +12,27 @@ window.onload = function() {
      // config gate
     ///////////////
     
-    gateTheMovieDb.config.setLib(theMovieDb);
-    gateTheMovieDb.config.setKey('ed3ffec3f676dd0b389af40884385f36');
-    gateTheMovieDb.config.sendKeyToLib();
-    gateTheMovieDb.config.setResultContainer(searchResult);
+        gateTheMovieDb.config.setLib(theMovieDb);
+        gateTheMovieDb.config.setKey('ed3ffec3f676dd0b389af40884385f36');
+        gateTheMovieDb.config.sendKeyToLib();
+        gateTheMovieDb.config.setResultContainer(searchResult[0]);
     
       //////////////////////////
      // comunication whit gate
     //////////////////////////
     
-    gateTheMovieDb.comunication.setAlias();
-    // gateTheMovieDb.comunication.getLibConfig();
-    // gateTheMovieDb.comunication.getLibMulti({'query':'Jack+Reacher'});
+        gateTheMovieDb.comunication.setAlias();
+        // gateTheMovieDb.comunication.getLibConfig();
+        // gateTheMovieDb.comunication.getLibMulti({'query':'Jack+Reacher'});
     
+        searchButton[0].addEventListener('click', function(){
+            gateTheMovieDb.comunication.getLibMulti({'query':searchField[0].value});
+        });
+        
+      /////////////////
+     // render result
+    /////////////////
     
-    
-    
-    searchButton[0].addEventListener('click', function(){
-        gateTheMovieDb.comunication.getLibMulti({'query':searchField[0].value});
-    });
+        gateTheMovieDb.render.setAlias();
     
 }
