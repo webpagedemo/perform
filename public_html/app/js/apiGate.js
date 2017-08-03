@@ -81,17 +81,6 @@ gateTheMovieDb.render = {
 
                 this.resultContainer.appendChild(itemContainer);
                 
-                
-                
-                
-                /*
-                    resultData.results[i].title
-                    resultData.results[i].media_type
-                    resultData.results[i].original_language
-                    
-                    
-                */
-                
             }
         }
         
