@@ -31,6 +31,12 @@ gateTheMovieDb.config = {
     }
 };
 
+/**
+ * Message obj
+ * Obj has callback messages method to use on api lib
+ * 
+ * @type obj
+ */
 gateTheMovieDb.message = {
     onSuccess: function(data) {
         console.log('success');
@@ -43,54 +49,24 @@ gateTheMovieDb.message = {
 };
 
 gateTheMovieDb.comunication = {
-    apiLib: gateTheMovieDb.config.lib_obj,
-    message: gateTheMovieDb.message,
+    apiLib: '',
+    message: '',
+    setAlias: function() {
+        this.apiLib  = gateTheMovieDb.config.lib_obj;
+        this.message = gateTheMovieDb.message;
+    },
     getLibConfig: function() {
-        
-        var gateMessage = gateTheMovieDb.message;
         
         return  this.apiLib.configurations.getConfiguration(
                     this.message.onSuccess, 
                     this.message.onError
                 );
     },
-    getLibList: function(options) {
-        this.apiLib.search.getList(
+    getLibMulti: function(options) {
+        this.apiLib.search.getMulti(
                 options, 
                 this.message.onSuccess, 
                 this.message.onError
         );
     }
 };
-
-/*
-gateTheMovieDb.comunication = {
-    
-};
-
-gateTheMovieDb.message = {
-    onSuccess: function(data) {
-        console.log('success');
-        console.log(data);
-    },
-    onError: function(data) {
-        console.log('error');
-        console.log(data);
-    }
-};
-
-theMovieDb.common.api_key = 'ed3ffec3f676dd0b389af40884385f36';
-
-function success(data) {
-    console.log(data);
-}
-
-function error(data) {
-    console.log(data);
-}
-theMovieDb.configurations.getConfiguration(success, error);
-*/
-//var params = {'query':'Jack+Reacher'};
-//var generateQuery = theMovieDb.common.generateQuery(params);
-
-//theMovieDb.common.getLists();
