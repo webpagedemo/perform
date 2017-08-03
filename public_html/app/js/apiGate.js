@@ -3,22 +3,20 @@
  * License: MIT
  * Version: 0.0.1
  * 
- * Przeczytaj kod odczytu API (v4 auth)
- * eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlZDNmZmVjM2Y2NzZkZDBiMzg5YWY0MDg4NDM4NWYzNiIsInN1YiI6IjU5ODIxNDI4YzNhMzY4MGNmYjAxODFmZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.mVOv0C_kXX5ULT9Zn4wJWUlXtK702rzHJbgjc7r1jac
- * 
- * Klucz API (v3 auth)
- * ed3ffec3f676dd0b389af40884385f36
- * 
- * Przykład zapytania API
- * htgates://api.themoviedb.org/3/movie/550?api_key=ed3ffec3f676dd0b389af40884385f36
- * 
  */
 
 gateTheMovieDb = {};
 
+/**
+ * Config obj
+ * Obj has config data and methods to set lib
+ * 
+ * @type obj
+ */
 gateTheMovieDb.config = {
     lib_obj: {},
     api_key: 'YOUR_API_KEY',
+    result_container: {},
     
     setLib: function(libObj) {
         gateTheMovieDb.config.lib_obj = libObj;
@@ -28,7 +26,15 @@ gateTheMovieDb.config = {
     },
     sendKeyToLib: function() {
         this.lib_obj.common.api_key = this.api_key;
+    },
+    setResultContainer: function(item) {
+        this.result_container = item;
     }
+};
+
+
+gateTheMovieDb.render = {
+    
 };
 
 /**
@@ -38,16 +44,24 @@ gateTheMovieDb.config = {
  * @type obj
  */
 gateTheMovieDb.message = {
+    resultContainer: {},
+    setAlias: function() {
+        this.resultContainer  = gateTheMovieDb.config.result_container;
+    },
     onSuccess: function(data) {
-        console.log('success');
-        console.log(data);
+        this.resultContainer = data;
     },
     onError: function(data) {
-        console.log('error');
-        console.log(data);
+        console.error(data);
     }
 };
 
+/**
+ * Comunication obj
+ * Obj has methods to comunication whit api
+ * 
+ * @type obj
+ */
 gateTheMovieDb.comunication = {
     apiLib: '',
     message: '',
